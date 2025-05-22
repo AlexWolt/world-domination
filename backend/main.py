@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from config import DEBUG_MODE
 import logging
+import os  # добавляем для работы с окружением
 
 from api.room import RoomRouter
 from api.user import UserRouter
@@ -30,3 +31,8 @@ app.include_router(EventRouter, prefix="/room/events", tags=["Eventmanager"])
 
 if DEBUG_MODE:
     app.include_router(DebugRouter, prefix="/debug", tags=["Debug"])
+
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.getenv("PORT", 8000))  # читаем порт из окружения или ставим 8000 по умолчанию
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
