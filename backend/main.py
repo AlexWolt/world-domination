@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from config import DEBUG_MODE
 import logging
-import os  # добавляем для работы с окружением
+import os
 
 from api.room import RoomRouter
 from api.user import UserRouter
@@ -14,7 +14,7 @@ fileHandler = logging.FileHandler("log.txt")
 fileHandler.setLevel(logging.ERROR)
 logging.getLogger().addHandler(fileHandler)
 
-app = FastAPI(title="World Domination API", root_path="/api")
+app = FastAPI(title="World Domination API")  # Убрал root_path
 
 app.add_middleware(
     CORSMiddleware,
@@ -24,15 +24,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(RoomRouter, prefix="/room", tags=["Комната"])
-app.include_router(UserRouter, prefix="/room/user", tags=["Пользователь"])
-app.include_router(GameRouter, prefix="/game", tags=["Игра"])
-app.include_router(EventRouter, prefix="/room/events", tags=["Eventmanager"])
+app.include_router(RoomRouter, prefix="/api/room", tags=["Комната"])
+app.include_router(UserRouter, prefix="/api/room/user", tags=["Пользователь"])
+app.include_router(GameRouter, prefix="/api/game", tags=["Игра"])
+app.include_router(EventRouter, prefix="/api/room/events", tags=["Eventmanager"])
 
 if DEBUG_MODE:
-    app.include_router(DebugRouter, prefix="/debug", tags=["Debug"])
+    app.include_router(DebugRouter, prefix="/api/debug", tags=["Debug"])
 
 if __name__ == "__main__":
     import uvicorn
-    port = int(os.getenv("PORT", 8000))  # читаем порт из окружения или ставим 8000 по умолчанию
+    port = int(os.getenv("PORT", 8000))
     uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
