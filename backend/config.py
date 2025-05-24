@@ -1,5 +1,3 @@
-import os
-
 DEFAULT_CITY_LEVEL = 1
 DEFAULT_CITY_INCOME = 20
 DEFAULT_BALANCE = 210
@@ -9,15 +7,15 @@ ROUND_TIME = 10 * 60
 END_STAGE = 7
 SEND_NUCLEAR_STAGE = 3
 
-NUCLEAR_REACTOR_ECOLOGY = -3  # Единиц экологии
-NUCLEAR_ROCKET_ECOLOGY = -5  # Единиц экологии
-DONATE_ECOLOGY = 5  # Единиц экологии
-DONATE_ECOLOGY_RAISE = 0.2  # + %
-SANCTION_EFFECT = 0.1  # - %
-CITY_INCOME_RAISE = 10  # Единиц валюты
-CITY_PRICE_RAISE = 30  # Единиц валюты
+NUCLEAR_REACTOR_ECOLOGY = -3 # Единиц экологии
+NUCLEAR_ROCKET_ECOLOGY = -5 # Единиц экологии
+DONATE_ECOLOGY = 5 # Единиц экологии
+DONATE_ECOLOGY_RAISE = 0.2 # + %
+SANCTION_EFFECT = 0.1 # - %
+CITY_INCOME_RAISE = 10 # Единиц валюты
+CITY_PRICE_RAISE = 30 # Единиц валюты
 
-DEBUG_MODE = os.getenv("DEBUG_MODE", "False").lower() in ("true", "1", "t")
+DEBUG_MODE = True
 
 PRICES = {
     "level_upgrade": 30,
@@ -29,7 +27,7 @@ PRICES = {
     "country_spy": 20
 }
 
-CITIES = {  # 1 город - столица
+CITIES = { # 1 город - столица
     "ru": [
         "Москва",
         "Санкт-Питербург",
@@ -96,12 +94,6 @@ CITIES = {  # 1 город - столица
         "Женева",
         "Люцерн"
     ],
-    "il": [
-        "Иерусалим",
-        "Тель-Авив",
-        "Хайфа",
-        "Ришон-ле-Цион"
-    ],
     "pa": [
         "Газа",
         "Хан-Юнис",
@@ -125,41 +117,5 @@ CITIES = {  # 1 город - столица
         "Ибадан",
         "Кано",
         "Порт-Харкорт"
-    ],
-    "ua": [
-        "Киев",
-        "Харьков",
-        "Одесса",
-        "Днепр"
-    ],
-    "kz": [
-        "Астана",
-        "Алматы",
-        "Шымкент",
-        "Актобе"
-    ],
-    "tr": [
-        "Анкара",
-        "Стамбул",
-        "Измир",
-        "Бурса"
-    ],
-    "pl": [
-        "Варшава",
-        "Краков",
-        "Лодзь",
-        "Вроцлав"
-    ],
-    "ca": [
-        "Оттава",
-        "Торонто",
-        "Монреаль",
-        "Калгари"
-    ],
-    "se": [
-        "Стокгольм",
-        "Алингсос",
-        "Арбуга",
-        "Буден"
-    ]    
+    ]
 }
